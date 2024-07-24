@@ -12,11 +12,7 @@ class BookmarksParserTests {
     fun parse_whenFirefox_returnsCorrectResult(){
         // Given
         val firefoxJson = this.javaClass.getResource("/firefox_bookmarks.json").readText()
-        val firefoxTestData = Json {
-            serializersModule = Serializer.module
-            encodeDefaults = true
-            ignoreUnknownKeys = true
-        }.decodeFromString<List<NetScapeBookmarkNode>>(firefoxJson)
+        val firefoxTestData = Serializer.jsonSerializer.decodeFromString<List<NetScapeBookmarkNode>>(firefoxJson)
         val target = BookmarksParser()
         
         // When

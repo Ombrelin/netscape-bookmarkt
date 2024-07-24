@@ -14,5 +14,4 @@ data class Bookmark(
     @SerialName("add_date")
     val iconUri: String? = null,
     val icon: String? = null
-) : NetScapeBookmarkNode {
-}
+) : NetScapeBookmarkNode
