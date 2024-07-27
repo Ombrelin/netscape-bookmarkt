@@ -16,23 +16,23 @@ class BookmarksParserTests {
         val target = BookmarksParser()
         
         // When
-        val result = target.parse(this.javaClass.getResource("/firefox_bookmarks.html").toExternalForm())
+        val result = target.parse(this.javaClass.getResource("/firefox_bookmarks.html").path)
         
         // Then
-        assertEquals(result, firefoxTestData);
+        assertEquals(result.children, firefoxTestData);
     }
 
     @Test
     fun parse_whenChrome_returnsCorrectResult(){
         // Given
-        val firefoxJson = this.javaClass.getResource("/chrome_bookmarks.json").readText()
-        val firefoxTestData = Json.decodeFromString<List<NetScapeBookmarkNode>>(firefoxJson)
+        val chromeJson = this.javaClass.getResource("/chrome_bookmarks.json").readText()
+        val chromeTestData = Json.decodeFromString<List<NetScapeBookmarkNode>>(chromeJson)
         val target = BookmarksParser()
 
         // When
         val result = target.parse(this.javaClass.getResource("/chrome_bookmarks.html").toExternalForm())
 
         // Then
-        assertEquals(result, firefoxTestData);
+        assertEquals(result.children, chromeTestData);
     }
 }
