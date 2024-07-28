@@ -7,7 +7,6 @@ import kotlinx.serialization.Serializable
 @SerialName("folder")
 data class Folder(
     override val title: String,
-    @SerialName("ns_root")
     val nsRoot: String?,
     override val addDate: String? = null,
     override val lastModified: String? = null,

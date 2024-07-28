@@ -2,6 +2,7 @@ package fr.arsenelapostolet.netscapebookmarkt
 
 import fr.arsenelapostolet.netscapebookmarkt.nodes.NetScapeBookmarkNode
 import fr.arsenelapostolet.netscapebookmarkt.nodes.Serializer
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
@@ -19,7 +20,7 @@ class BookmarksParserTests {
         val result = target.parse(this.javaClass.getResource("/firefox_bookmarks.html").path)
         
         // Then
-        assertEquals(result.children, firefoxTestData);
+        assertEquals(firefoxJson, Serializer.jsonSerializer.encodeToString(result));
     }
 
     @Test
@@ -33,6 +34,6 @@ class BookmarksParserTests {
         val result = target.parse(this.javaClass.getResource("/chrome_bookmarks.html").toExternalForm())
 
         // Then
-        assertEquals(result.children, chromeTestData);
+        assertEquals(result, chromeTestData);
     }
 }

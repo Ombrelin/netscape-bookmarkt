@@ -8,9 +8,7 @@ interface NetScapeBookmarkNode {
     
     val title: String
     
-    @SerialName("add_date")
     val addDate: String?
     
-    @SerialName("last_modified")
     val lastModified: String?
 }

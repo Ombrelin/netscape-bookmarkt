@@ -1,10 +1,12 @@
 package fr.arsenelapostolet.netscapebookmarkt.nodes
 
 import kotlinx.serialization.DeserializationStrategy
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.*
 import kotlinx.serialization.modules.*
 
 object Serializer {
+    @OptIn(ExperimentalSerializationApi::class)
     val jsonSerializer = Json {
         serializersModule = SerializersModule() {
             polymorphic(NetScapeBookmarkNode::class) {
@@ -14,6 +16,8 @@ object Serializer {
         }
         encodeDefaults = true
         ignoreUnknownKeys = true
+        prettyPrint = true
+        namingStrategy = JsonNamingStrategy.SnakeCase
     }
     
     object NetScapeBookmarkNodeSerializer : JsonContentPolymorphicSerializer<NetScapeBookmarkNode>(NetScapeBookmarkNode::class) {
